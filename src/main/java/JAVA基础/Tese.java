@@ -14,6 +14,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Tese {
     public static void main(String[] args) {
+        //test1();
+
+    }
+
+    private static void test1() {
         Vector vector = new Vector();
         Stack stack = new Stack();
         List copyOnWriteArrayList = new CopyOnWriteArrayList();
@@ -29,6 +34,5 @@ public class Tese {
         //检查
         linkedList.element();
         linkedList.peek();
-
     }
 }

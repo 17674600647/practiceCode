@@ -16,6 +16,7 @@ public class 合并数组 {
             if (n == 1 || n == 2) {
                 return 1;
             }
+
             return fib(n - 1) + fib(n - 2);
         }
     }

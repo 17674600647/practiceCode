@@ -1,6 +1,7 @@
 package JAVA基础.IO流;
 
 import java.io.*;
+import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -29,7 +30,7 @@ public class ReadAndWriter {
         }
     }
 
-    public  void writer() {
+    public void writer() {
         File file = new File("test.md");
         String str = "## 这是一个标题";
         byte[] bytes = str.getBytes();
@@ -37,6 +38,19 @@ public class ReadAndWriter {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(bytes);
             fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void reader() {
+        File file = new File("test.md");
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader(file));
+            String str;
+            while ((str = bf.readLine()) != null) {
+                System.out.println(str);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
