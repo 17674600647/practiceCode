@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束-->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入数据库连接配置文件-->
+    <properties resource="jdbc.properties"></properties>
+    <settings>
+        <setting name="logImpl" value="log4j"/>
+    </settings>
+    <plugins>
+        <!-- 注意：分页助手的插件  配置在通用mapper之前 -->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 指定方言 -->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
+    <typeAliases>
+        <!--起别名-->
+        <typeAlias type="SSM.Mybatis.entity.Student" alias="student"></typeAlias>
+    </typeAliases>
+    <!--    默认环境-->
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://47.103.216.189:3306/study"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456788"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="StudentMapper.xml"></mapper>
+    </mappers>
+
+</configuration>

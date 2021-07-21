@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束,提示约束-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+Mapper:核心根标签
+namespace:名称空间,自己取
+-->
+<mapper namespace="StudentMapper">
+    <!--id：唯一标识， 配合名称空间使用。
+        parameterType：指定参数映射的对象类型。
+        resultType：指定结果映射的对象类型。
+        parametertype:指定参数映射对象类型,如果是一个对象的参数,就写对象
+        -->
+    <select id="selectAll" resultType="SSM.Mybatis.entity.Student">
+        SELECT *
+        FROM student;
+    </select>
+    <select id="selectOne" resultType="SSM.Mybatis.entity.Student" parameterType="java.lang.Integer">
+        SELECT *
+        From student
+        WHERE id = #{id}
+    </select>
+
+    <!--返回影响的行数  resultType 不写resulttype-->
+    <insert id="insert" parameterType="SSM.Mybatis.entity.Student">
+        Insert INTO student
+        VALUES (#{id}, #{name}, #{age})
+    </insert>
+
+    <update id="update" parameterType="SSM.Mybatis.entity.Student">
+        UPDATE student
+        SET name=#{name},
+            age=#{age}
+        where id = #{id}
+    </update>
+
+    <delete id="del" parameterType="SSM.Mybatis.entity.Student">
+        delete
+        FROM student
+        where id = #{id}
+</delete>
+</mapper>
