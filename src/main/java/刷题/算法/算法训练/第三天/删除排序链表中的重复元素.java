@@ -34,23 +34,21 @@ class ListNode {
 public class 删除排序链表中的重复元素 {
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
-        ListNode listNode2 = new ListNode(2);
+        ListNode listNode2 = new ListNode(1);
         listNode1.next = listNode2;
         ListNode listNode3 = new ListNode(3);
         listNode2.next = listNode3;
         ListNode listNode4 = new ListNode(3);
         listNode3.next = listNode4;
-        ListNode listNode5 = new ListNode(4);
+        ListNode listNode5 = new ListNode(5);
         listNode4.next = listNode5;
-        ListNode listNode6 = new ListNode(4);
+        ListNode listNode6 = new ListNode(5);
         listNode5.next = listNode6;
         ListNode listNode7 = new ListNode(5);
         listNode6.next = listNode7;
-        /*while (listNode1 != null) {
-            System.out.println(listNode1.val);
-            listNode1 = listNode1.next;
-        }*/
 
+
+        deleteDuplicates(listNode1);
         System.out.println("-------------");
         while (listNode1 != null) {
             System.out.println(listNode1.val);
@@ -58,5 +56,37 @@ public class 删除排序链表中的重复元素 {
         }
     }
 
+    //去重
+    public static ListNode deleteDuplicates(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode nowNode = head;
+        ListNode preNode = head;
+        //ListNode returnNode = nowNode;
+        head = head.next;
+        while (head != null) {
+            System.out.println(head.val);
+            if (nowNode.val == head.val) {
+                while (nowNode.val == head.val) {
+                    if (head.next != null) {
+                        head = head.next;
+                    } else {
+                        break;
+                    }
+                }
+                preNode.next = head;
+                nowNode = preNode;
+            } else {
+                nowNode.next = head;
+                preNode = nowNode;
+                nowNode = nowNode.next;
+            }
+            //下一个
+
+            head = head.next;
+        }
+        return preNode;
+    }
 
 }
